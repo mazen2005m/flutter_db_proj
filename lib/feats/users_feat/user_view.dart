@@ -1,7 +1,11 @@
+import 'package:db_proj/core/models/process_response.dart';
+import 'package:db_proj/core/utils/helpers.dart';
+import 'package:db_proj/feats/auth/auth_api_controller.dart';
 import 'package:db_proj/feats/users_feat/user_api_controller.dart';
+import 'package:db_proj/feats/users_feat/user_funcs.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatelessWidget with Helpers {
   const HomeView({super.key});
 
   @override
@@ -10,11 +14,13 @@ class HomeView extends StatelessWidget {
     bool isNotEmptyList = true;
 
     return Scaffold(
+      backgroundColor: Colors.yellowAccent,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("home"),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () async => await UserFuncs().userViewLogoutFunc(context),
               icon: Icon(Icons.logout)
           ),
           IconButton(
@@ -60,5 +66,7 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+
+
 
 }

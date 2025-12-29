@@ -1,4 +1,9 @@
+import 'package:db_proj/core/configs/api_configs.dart';
+import 'package:db_proj/core/configs/shared_pref_configs.dart';
+import 'package:db_proj/core/models/process_response.dart';
+import 'package:db_proj/core/models/user.dart';
 import 'package:db_proj/core/utils/helpers.dart';
+import 'package:db_proj/feats/auth/auth_api_controller.dart';
 import 'package:flutter/material.dart';
 
 class RegisterFuncs with Helpers{
@@ -24,14 +29,25 @@ class RegisterFuncs with Helpers{
     }
   }
 
-  void _register() {
-    showSnackBar(context: context, msg: _emailTextEditingController.text);
+  void _register() async {
+    ProcessResponse processResponse = await AuthApiController().register(user);
+    if(processResponse.isSuccess){
+      // SharedPrefConfigs().saveUser(user: user);
+      Navigator.pop(context);
+    }
+    showSnackBar(context: context, msg: processResponse.msg, isSuccess: processResponse.isSuccess);
   }
-
 
   //////////////////
   void gotoRegisterView() {
     Navigator.of(context).pushNamed("/register_view");
+  }
+
+  User get user {
+    User user = User();
+      user.email = _emailTextEditingController.text;
+      user.password = _emailTextEditingController.text;
+    return user;
   }
 
 }

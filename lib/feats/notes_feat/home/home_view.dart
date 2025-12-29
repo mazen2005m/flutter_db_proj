@@ -9,6 +9,8 @@ class HomeView extends StatelessWidget {
     bool isNotEmptyList = true;
 
     return Scaffold(
+      backgroundColor: Colors.yellowAccent,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("home"),
         actions: [

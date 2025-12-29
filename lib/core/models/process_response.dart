@@ -2,5 +2,5 @@ class ProcessResponse {
   final String msg;
   final bool isSuccess;
 
-  ProcessResponse({required String this.msg, required bool this.isSuccess});
+  const ProcessResponse({required this.msg, required this.isSuccess});
 }

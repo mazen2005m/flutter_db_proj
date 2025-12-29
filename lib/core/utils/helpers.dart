@@ -1,3 +1,4 @@
+import 'package:db_proj/core/models/process_response.dart';
 import 'package:flutter/material.dart';
 
 mixin Helpers {
@@ -15,4 +16,6 @@ mixin Helpers {
       ),
     );
   }
+
+  ProcessResponse get failedResponse => const ProcessResponse(msg: "something went wrong", isSuccess: false);
 }

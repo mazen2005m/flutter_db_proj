@@ -32,6 +32,8 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellowAccent,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           // AppLocalizations.of(context)!.login,

@@ -1,4 +1,8 @@
+import 'package:db_proj/core/configs/shared_pref_configs.dart';
+import 'package:db_proj/core/models/process_response.dart';
+import 'package:db_proj/core/models/user.dart';
 import 'package:db_proj/core/utils/helpers.dart';
+import 'package:db_proj/feats/auth/auth_api_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginFuncs with Helpers{
@@ -24,8 +28,14 @@ class LoginFuncs with Helpers{
     }
   }
 
-  void _login() {
-    showSnackBar(context: context, msg: _emailTextEditingController.text);
+  void _login() async{
+    ProcessResponse processResponse = await AuthApiController().login(user);
+    if(processResponse.isSuccess) {
+      Navigator.of(context).pushNamed("/user_view");
+    }
+    showSnackBar(context: context,
+        msg: processResponse.msg,
+        isSuccess: processResponse.isSuccess);
   }
 
 
@@ -34,4 +44,10 @@ class LoginFuncs with Helpers{
     Navigator.of(context).pushNamed("/register_view");
   }
 
+  User get user {
+    User user = User();
+    user.email = _emailTextEditingController.text;
+    user.password = _passwordTextEditingController.text;
+    return user;
+  }
 }

@@ -33,6 +33,8 @@ class _LoginViewState extends State<LoginView> with Helpers{
   Widget build(BuildContext context) {
     LoginFuncs _loginFuncs = LoginFuncs(context, _emailTextEditingController, _passwordTextEditingController);
     return Scaffold(
+      backgroundColor: Colors.yellowAccent,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           // AppLocalizations.of(context)!.login,
@@ -44,6 +46,7 @@ class _LoginViewState extends State<LoginView> with Helpers{
         ),
         elevation: 0,
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black45),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -83,6 +86,11 @@ class _LoginViewState extends State<LoginView> with Helpers{
                 ),
               ],
             ),
+            Center(
+              child: TextButton(
+                  onPressed: () => Navigator.pushNamed(context, "/forget_password_view"),
+                  child: Text("forget password")),
+            )
           ]
         ),
       ),

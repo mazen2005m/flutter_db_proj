@@ -1,3 +1,4 @@
+import 'package:db_proj/core/configs/shared_pref_configs.dart';
 import 'package:flutter/material.dart';
 
 class LaunchView extends StatefulWidget {
@@ -12,7 +13,8 @@ class _LaunchViewState extends State<LaunchView> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), (){
-      Navigator.of(context).pushReplacementNamed("/login_view");
+      String route = SharedPrefConfigs().isLoggedIn? "/user_view" : "/login_view";
+      Navigator.of(context).pushReplacementNamed(route);
     });
   }
   @override
